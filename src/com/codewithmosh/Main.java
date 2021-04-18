@@ -1,13 +1,13 @@
 package com.codewithmosh;
 
 import com.boardgame.Board;
-import com.boardgame.Position;
+import com.chess.ChessMath;
 
 public class Main {
 
     public static void main(String[] args) {
-        Board board = new Board(8, 8);
+        ChessMath chessMath = new ChessMath();
+        UI.printBoard(chessMath.getPieces());
 
-        System.out.println(board);
     }
 }
