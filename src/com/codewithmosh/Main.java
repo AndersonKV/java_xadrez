@@ -1,14 +1,13 @@
 package com.codewithmosh;
 
+import com.boardgame.Board;
 import com.boardgame.Position;
 
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Board board = new Board(8, 8);
 
-        Position pos = new Position(3, 5);
-
-        System.out.println(pos);
+        System.out.println(board);
     }
 }
