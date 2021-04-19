@@ -1,6 +1,7 @@
 package com.chess;
 
 import com.boardgame.Board;
+import com.boardgame.Piece;
 import com.boardgame.Position;
 import com.chess.piece.King;
 import com.chess.piece.Rock;
@@ -22,9 +23,30 @@ public class ChessMath {
         }
         return mat;
     }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+        Position source = sourcePosition.toPosition();
+        Position target = targetPosition.toPosition();
+        validateSourcePosition(source);
+        Piece capturedPiece = makeMove(source, target);
+        return (ChessPiece) capturedPiece;
+    }
+
+    public Piece makeMove(Position source, Position target) {
+        Piece p = board.removePiece(source);
+        Piece capturedPiece = board.removePiece(target);
+        board.placePiece(p, target);
+        return capturedPiece;
+    }
+    public void validateSourcePosition(Position position) {
+        if(!board.thereIsAPiece(position)) {
+            throw new ChessException("não há posição no tabuleiro");
+        }
+    }
     private void placeNewPiece(char column, int row, ChessPiece piece) {
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
     }
+
     private void initialSetup() {
         placeNewPiece('c', 1, new Rock(board, Color.WHITE));
         placeNewPiece('b', 6, new Rock(board, Color.BLACK));
