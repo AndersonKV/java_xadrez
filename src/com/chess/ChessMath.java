@@ -38,20 +38,26 @@ public class ChessMath {
         board.placePiece(p, target);
         return capturedPiece;
     }
+
     public void validateSourcePosition(Position position) {
-        if(!board.thereIsAPiece(position)) {
+        if (!board.thereIsAPiece(position)) {
             throw new ChessException("não há posição no tabuleiro");
         }
+
+        if (!board.piece(position).isThereAnyPossibleMove()) {
+            throw new ChessException("não existe movimento possivel para essa peça");
+        }
     }
+
     private void placeNewPiece(char column, int row, ChessPiece piece) {
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
     }
 
     private void initialSetup() {
         placeNewPiece('c', 1, new Rock(board, Color.WHITE));
-        placeNewPiece('b', 6, new Rock(board, Color.BLACK));
+        placeNewPiece('b', 6, new King(board, Color.BLACK));
         placeNewPiece('d', 7, new Rock(board, Color.WHITE));
-        placeNewPiece('c', 7, new Rock(board, Color.BLACK));
+        placeNewPiece('c', 7, new King(board, Color.BLACK));
         placeNewPiece('a', 7, new Rock(board, Color.WHITE));
 //         board.placePiece(new King(board, Color.WHITE), new Position(0, 4));
     }
