@@ -26,8 +26,11 @@ public class ChessMath {
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
     }
     private void initialSetup() {
+        placeNewPiece('c', 1, new Rock(board, Color.WHITE));
         placeNewPiece('b', 6, new Rock(board, Color.BLACK));
-        placeNewPiece('a', 7, new Rock(board, Color.BLACK));
+        placeNewPiece('d', 7, new Rock(board, Color.WHITE));
+        placeNewPiece('c', 7, new Rock(board, Color.BLACK));
+        placeNewPiece('a', 7, new Rock(board, Color.WHITE));
 //         board.placePiece(new King(board, Color.WHITE), new Position(0, 4));
     }
 }
